@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block breadcrumb %}
+<li class="breadcrumb-item"><a href="{% url 'home' %}">All Assigned Exams</a></li>
+<li class="breadcrumb-item active">{{ exam_assign_detail.exam.title }}</li>
+{% endblock breadcrumb %}
+
+{% block content %}
+<div class="card" style="width: 38rem;">
+    <div class="card-body">
+        <h5 class="card-title">{{ exam_assign_detail.exam.title }}</h5>
+        <table style="width: 300px;">
+            <tr>
+                <td style="padding: 6px 10px; padding-left: 0px;">Duration:</td>
+                <td style="padding: 6px 10px; padding-left: 0px;">{{ exam_assign_detail.exam.duration }} mins</td>
+            </tr>
+            <tr>
+                <td style="padding: 6px 10px; padding-left: 0px;">Mark:</td>
+                <td style="padding: 6px 10px; padding-left: 0px;">{{ exam_assign_detail.exam.mark }}</td>
+            </tr>
+            <tr>
+                <td style="padding: 6px 10px; padding-left: 0px;">Pass Mark:</td>
+                <td style="padding: 6px 10px; padding-left: 0px;">{{ exam_assign_detail.exam.pass_mark }}</td>
+            </tr>
+            <tr>
+                <td style="padding: 6px 10px; padding-left: 0px;">Questions:</td>
+                <td style="padding: 6px 10px; padding-left: 0px;">{{ exam_assign_detail.exam.question_set.count }}</td>
+            </tr>
+        </table>
+        <a href="{% url 'start_exam' exam_assign_detail.id %}" class="btn btn-primary">Start Exam</a>
+    </div>
+</div>
+
+
+{% endblock content %}

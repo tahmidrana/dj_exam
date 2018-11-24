@@ -27,4 +27,6 @@ urlpatterns = [
     path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
     path('signup/', accounts_views.signup, name='signup'),
     path('', home_views.my_exam_list, name='home'),
+    path('enroll_exam/<int:id>', exam_assign_views.enroll_exam, name='enroll_exam'),
+    path('start_exam/<int:id>', exam_assign_views.start_exam, name='start_exam'),
 ]
