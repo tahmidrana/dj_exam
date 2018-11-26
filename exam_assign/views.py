@@ -2,8 +2,10 @@ from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
 from exam_assign.models import ExamAssign
 from datetime import datetime
+from django.contrib.auth.decorators import login_required
 
 
+@login_required
 def start_exam(request, id):
     current_datetime = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     exam_assign = ExamAssign.objects.get(pk=id)
@@ -14,6 +16,7 @@ def start_exam(request, id):
     # return HttpResponse("Exam started at %s" % current_datetime)
 
 
+@login_required
 def enroll_exam(request, id):
     # exam_assign_detail = ExamAssign.objects.get(pk=id)
     exam_assign_detail = get_object_or_404(ExamAssign, pk=id)

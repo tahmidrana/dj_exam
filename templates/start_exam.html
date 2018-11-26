@@ -14,7 +14,7 @@
     <h5><b>Q.</b> {{ question.title }}</h5>
     <ul>
         {% for ans in question.answer_set.all %}
-        <li style="list-style: none; padding: 6px;"> <input type="radio" name="corr_ans{{ question.id }}" id="">
+        <li style="list-style: none; padding: 6px;"> <input type="radio" name="corr_ans{{ question.id }}" id="" value="{{ ans.id }}">
             {{ ans.title }}</li>
         {% endfor %}
     </ul>
