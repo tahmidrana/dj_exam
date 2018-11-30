@@ -8,19 +8,43 @@
 
 {% block content %}
 <h3># {{ exam_assign_detail.exam.title }}</h3>
-<div class="question_block" style="padding-left: 25px;">
-    {% for question in exam_assign_detail.exam.question_set.all %}
+<form action="{% url 'submit_exam' exam_assign_detail.id %}" method="POST" onsubmit="return submit_exam()">
+    {% csrf_token %}
+    <div class="question_block" style="padding-left: 25px;">
+        {% for question in exam_assign_detail.exam.question_set.all %}
 
-    <h5><b>Q.</b> {{ question.title }}</h5>
-    <ul>
-        {% for ans in question.answer_set.all %}
-        <li style="list-style: none; padding: 6px;"> <input type="radio" name="corr_ans{{ question.id }}" id="" value="{{ ans.id }}">
-            {{ ans.title }}</li>
+        <h5><b>Q.</b> {{ question.title }}</h5>
+        <ul>
+            {% for ans in question.answer_set.all %}
+            <li style="list-style: none; padding: 6px;"> <input type="radio" name="corr_ans_{{ question.id }}" id=""
+                    value="{{ ans.id }}" required>
+                {{ ans.title }}</li>
+            {% endfor %}
+        </ul>
         {% endfor %}
-    </ul>
-    {% endfor %}
-    <input type="submit" name="" id="" class="btn btn-success" value="Submit Exam">
-</div>
+        <input type="submit" name="" id="" class="btn btn-success" value="Submit Exam">
+    </div>
+</form>
 
 
 {% endblock content %}
+
+{% block jscript %}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        //alert('Hello');
+    });
+
+    function submit_exam() {
+        var x = confirm('Are you sure to submit the exam?');
+        if (x) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+</script>
+
+
+{% endblock jscript %}

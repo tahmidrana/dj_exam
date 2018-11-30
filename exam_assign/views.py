@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
-from exam_assign.models import ExamAssign
+from exam_assign.models import ExamAssign, ExamAnswer
 from datetime import datetime
 from django.contrib.auth.decorators import login_required
 
@@ -22,3 +22,15 @@ def enroll_exam(request, id):
     exam_assign_detail = get_object_or_404(ExamAssign, pk=id)
     context = {"exam_assign_detail": exam_assign_detail}
     return render(request, "enroll_exam.html", context)
+
+
+def submit_exam(request, id):
+    ht = ""
+    data = request.POST
+    for x in data:
+        if not str(x) == "csrfmiddlewaretoken":
+            # ht += x.split("_")[2] + " : " + data[x] + "<br>"
+            ques = x.split("_")[2]
+            ans = data[x]
+
+    return HttpResponse(ht)
