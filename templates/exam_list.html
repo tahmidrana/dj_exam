@@ -20,7 +20,7 @@
         <td class="align-middle">{{ user_exam.exam.duration }} mins</td>
         <td class="align-middle">{{ user_exam.assigned_on }} </td>
         <td class="align-middle"> <a href="{% url 'enroll_exam' user_exam.id %}" class="btn btn-sm btn-primary">Enroll</a>
-            <a href="" class="btn btn-sm btn-success">Result</a>
+            <a href="{% url 'exam_result' user_exam.id %}" class="btn btn-sm btn-success">Result</a>
         </td>
     </tr>
     {% endfor %}

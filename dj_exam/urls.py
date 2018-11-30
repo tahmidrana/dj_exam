@@ -32,4 +32,5 @@ urlpatterns = [
     path("enroll_exam/<int:id>", exam_assign_views.enroll_exam, name="enroll_exam"),
     path("start_exam/<int:id>", exam_assign_views.start_exam, name="start_exam"),
     path("submit_exam/<int:id>", exam_assign_views.submit_exam, name="submit_exam"),
+    path("exam_result/<int:id>", home_views.exam_result, name="exam_result"),
 ]
