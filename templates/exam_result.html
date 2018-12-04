@@ -33,6 +33,21 @@
         </table>
     </div>
 </div>
+<hr>
+{% for exam_answer in exam_answers %}
+
+<h5><b>Q.</b> {{ exam_answer.question.title }}</h5>
+<div style="padding-left: 10px;">
+    <p><b>Your Ans: </b> {{ exam_answer.user_ans.title }} </p>
+    {% for q_ans in exam_answer.question.answer_set.all %}
+    {% if q_ans.is_correct %}
+    <p style="background-color: green;"><b>Corr Ans: </b> {{ q_ans.title }} </p>
+    {% endif %}
+    {% endfor %}
+</div>
+
+{% endfor %}
+
 
 
 {% endblock content %}
